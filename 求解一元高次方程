@@ -1,0 +1,53 @@
+问题：已知x^x=10,求下，精度要求为10^-7。
+
+//二分法求解
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	double x0=3,x1=2;//输入确定范围
+	double x,y;
+	int i=0;//计运算次数
+	do{
+		x=(x0+x1)/2;
+		printf("%f\n",x);
+		y=pow(x,x)-10.0;//转化为方程f(x)=x^x-10=0求解
+		if(y == 0)	break;
+		if(y>0){//缩小范围
+			x0=x;
+		}
+		else{
+			x1=x;
+		}
+		i++;
+	}while(fabs(x0-x1) >= 1e-7 );//精度要求
+	printf("%d",i); 
+	return 0;
+}
+
+//弦截法
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	double x0=2.7,x1=2;
+	double x=x1;
+	double fx0=0,fx1=0;
+	double fx;
+	int i=0;
+	fx0=pow(x0,x0)-10.0;
+	fx1=pow(x1,x1)-10.0;
+	fx=fx1;
+	do{
+		x1=x;
+		fx1=fx;
+		x=x1-((x1-x0)*fx1)/(fx1-fx0);
+		fx=pow(x,x)-10.0;
+		printf("%lf\n",x);
+		if(fx == 0)
+			break;
+		i++;
+	}while(fabs(x0-x1) >= 1e-7);
+	printf("%d",i);
+	return 0;
+}

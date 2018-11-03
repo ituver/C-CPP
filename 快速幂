@@ -1,0 +1,33 @@
+/*快速幂
+问题描述：给定A,B,P，求(A^B)mod P。
+样式输入：
+ 2 5 3 
+*/
+#include<stdio.h>
+long powAndMod(long a,long b,int p)
+{
+	//根据公式(a*b)%p=((a%p)*(b%p))%p 
+	long c;
+	long result=1;
+	long mod = a%p;
+	if(b == 0)	return 1;
+	if( b%2 == 1){//幂为奇数分解为1次幂和b-1次 
+		b--;
+		c=powAndMod(a,b,p);
+		result=(result*mod*c)%p;
+	}
+	else{
+		b/=2;
+		c=powAndMod(a,b,p);
+		result=(result*c*c)%p;
+	}
+	return result;
+}
+int main()
+{
+	long a,b;
+	int p;
+	scanf("%ld%ld%d",&a,&b,&p);
+	printf("%d\n",powAndMod(a,b,p));//用递归求解 
+	return 0;
+}

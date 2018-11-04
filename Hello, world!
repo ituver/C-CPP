@@ -1,0 +1,16 @@
+/*解题思路
+用控制格式while((scanf("%d",&a[i]))!=EOF)输入整数；
+循环打印出ascii码对应字符。 
+*/
+
+#include<stdio.h>
+
+int main()
+{
+	int a[100],i,j=0;
+	while((scanf("%d",&a[j]))!=EOF)
+	j++;
+	for(i=0;i<j;i++)
+		printf("%c",a[i]);
+	return 0;
+}

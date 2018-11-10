@@ -1,0 +1,19 @@
+/*连续和（sum）
+
+输入正整数n，输出1＋2＋…＋n的值。提示：目标是解决问题，而不是练习编程。
+
+*/
+
+#include<stdio.h>
+
+int main()
+
+{	int n;
+
+	scanf("%d",&n);
+
+	printf("%d\n",(n*(n+1)/2));
+
+	return 0;
+
+ } 

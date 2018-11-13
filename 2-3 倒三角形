@@ -1,0 +1,24 @@
+/*倒三角形（triangle）
+输入正整数n≤20，输出一个n层的倒三角形。例如，n＝5时输出如下：
+	#########
+   #######
+	  #####
+	   ###
+	    #
+*/
+
+#include<stdio.h>
+int main()
+{
+	int i,j,k,n;
+	scanf("%d",&n);
+	for(i=n;i>0;i--)
+	{
+		for(k=0;k<n-i;k++)//空格 
+			printf(" ");
+		for(j=0;j<2*i-1;j++)
+			printf("#");
+		printf("\n");
+	}
+	return 0;
+}

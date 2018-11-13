@@ -16,3 +16,20 @@ int main()
 		}
 	return 0;
 }
+
+/*枚举平方根x*/
+#include<stdio.h>
+int main()
+{
+	int x;
+	for(x=1;;x++)
+	{
+		int n=x*x;
+		if(n<1000) continue;
+		if(n>99990) break;
+		int hi=n/100;
+		int lo=n%100;
+		if(hi/10 == hi%10 && lo/10 == lo%10) printf("%d\n", n);
+	}
+	return 0;
+}

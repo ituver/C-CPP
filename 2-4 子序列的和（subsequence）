@@ -1,0 +1,34 @@
+/*子序列的和（subsequence）
+输入两个正整数n＜m＜106，输出，保留5位小数。输入包含多组数据，
+结束标记为n＝m＝0。提示：本题有陷阱。
+样例输入：
+2 4
+65536 655360
+0 0
+样例输出：
+Case 1: 0.42361
+Case 2: 0.00001
+*/
+#include<stdio.h>
+int main()
+{
+	int i,n,m,temp;
+	while(scanf("%d%d",&n,&m)==2 && n && m)
+	{
+		double sum=0;
+		if(n>m)
+		{
+			temp=n;
+			n=m;
+			m=temp;
+		}
+		for(i=n;i<=m;i++)
+		{
+			sum+=1.0/i/i;
+		}
+			printf("%.5lf\n",sum);
+	}
+	
+
+	return 0;
+}

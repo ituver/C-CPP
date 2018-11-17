@@ -12,8 +12,10 @@ Case 2: 0.00001
 #include<stdio.h>
 int main()
 {
-	int i,n,m,temp;
-	while(scanf("%d%d",&n,&m)==2 && n && m)
+	long long n,m;
+	int i,temp;
+	int kase=0;
+	while(scanf("%lld%lld",&n,&m)==2 && n && m)
 	{
 		double sum=0;
 		if(n>m)
@@ -26,7 +28,7 @@ int main()
 		{
 			sum+=1.0/i/i;
 		}
-			printf("%.5lf\n",sum);
+			printf("Case %d: %.5lf\n",++kase,sum);
 	}
 	
 

@@ -1,0 +1,32 @@
+/*生成元（Digit Generator, ACM/ICPC Seoul 2005, UVa1583）
+如果x加上x的各个数字之和得到y，就说x是y的生成元。给出n（1≤n≤100000），求最小
+生成元。无解输出0。
+样式输入：
+3 
+216 121 2005时的解分别为
+198，0，1979。
+*/
+#include<stdio.h>
+#include<string.h>
+#define maxn 100005
+int ans[maxn];
+
+int main() 
+{
+	int T, n;
+	memset(ans, 0, sizeof(ans));//清零 
+	int m;
+	for(m = 1; m < maxn; m++) 
+	{
+		int x = m, y = m;
+		while(x > 0) { y += x % 10; x /= 10; }//m加上m的各个数字之和 
+		if(ans[y] == 0 || m < ans[y]) ans[y] = m;
+	}
+	scanf("%d", &T);//输入t个数 
+	while(T--)
+	{
+		scanf("%d", &n);
+		printf("%d\n", ans[n]);
+	}
+	return 0;
+}

@@ -11,18 +11,39 @@
 Case 1: 41
 Case 2: No answer*/
 
+解法一：
 #include<stdio.h>
 int main()
 {
-	int i,a,b,c;
-	scanf("%d%d%d",&a,&b,&c);
-	for(i=10;i<=100;i++)
+	int a,b,c，kase=0;
+	while(scanf("%d%d%d",&a,&b,&c) != EOF)
 	{
-		if(i%3 == a && i%5 == b && i%7 == c)
-			printf("%d\n",i);
+		int i;
+		for(i=10;i<=100;i++)
+		{
+			if(i%3 == a && i%5 == b && i%7 == c)
+				printf("Case %d: %d\n",++kase,i);
+				break;
+		}
+		if(i > 100)
+			printf("No answer\n");
+	}	
+	return 0;
+}
+
+解法二：
+#include<stdio.h>
+int main()
+{
+	int a,b,c,kase = 0;
+	while (scanf ("%d%d%d",&a,&b,&c) != EOF)
+	{
+		int sum;
+		sum = 70*a+21*b+15*c;
+		if (sum%105 <= 100)
+			printf ("Case %d: %d\n",++kase,sum%105);
+		else
+			 printf ("No answer\n");
 	}
-	if(i == 101)
-		printf("No answer\n");
-		
 	return 0;
 }

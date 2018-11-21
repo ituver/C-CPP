@@ -1,0 +1,70 @@
+/*刽子手游戏（Hangman Judge, UVa 489）
+刽子手游戏其实是一款猜单词游戏。游戏规则是这样的：计算机想一个单词
+让你猜，你每次可以猜一个字母。如果单词里有
+那个字母，所有该字母会显示出来；如果没有那
+个字母，则计算机会在一幅“刽子手”画上填一
+笔。这幅画一共需要7笔就能完成，因此你最多
+只能错6次。注意，猜一个已经猜过的字母也算
+错。
+在本题中，你的任务是编写一个“裁判”程序，输入单词和玩家的猜测，判断玩家赢了
+（Youwin.）、输了（Youlose.）还是放弃了
+（You  chickened out.）。 每组数据包含3行，第1
+行是游戏编号（-1为输入结束标记），第2行是
+计算机想的单词，3行是玩家的猜测。后两行
+保证只含小写字。
+样例输入：
+1
+cheese
+chese
+2
+cheese
+abcdefg
+3
+cheese
+abcdefgij
+-1
+样例输出:
+Round 1
+You win.
+Round 2
+You chickened out.
+Round 3
+You lose.
+*/
+
+#include<stdio.h>
+#include<string.h>
+#define maxn 100
+int left, chance; //还需要猜left个位置,错chance次之后就会输
+char s[maxn], s2[maxn]; //答案是字符串s,玩家猜的字母序列是s2
+int win, lose; //win=1表示已经赢了;lose=1表示已经输了
+
+
+	void guess(char ch) {
+int bad = 1;
+for(int i = 0; i < strlen(s); i++)
+if(s[i] == ch) { left--; s[i] = ' '; bad = 0; }
+if(bad) --chance;
+if(!chance) lose = 1;
+if(!left) win = 1;
+}
+
+
+int main() {
+int rnd;
+while(scanf("%d%s%s", &rnd, s, s2) == 3 && rnd != -1) {
+printf("Round %d\n", rnd);
+win = lose = 0; //求解一组新数据之前要初始化
+left = strlen(s);
+chance = 7;
+for(int i = 0; i < strlen(s2); i++) {
+guess(s2[i]); //猜一个字母
+if(win || lose) break; //检查状态
+}
+//根据结果进行输出
+if(win) printf("You win.\n");
+else if(lose) printf("You lose.\n");
+else printf("You chickened out.\n");
+}
+return 0;
+}
